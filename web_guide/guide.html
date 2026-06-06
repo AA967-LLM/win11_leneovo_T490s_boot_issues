@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God-Mode Protocol: ThinkPad T490s</title>
+    <style>
+        :root {
+            --primary: #00f3ff;
+            --bg: #0a0a0a;
+            --card-bg: #141414;
+            --text: #e0e0e0;
+            --accent: #ff007b;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 { font-size: 2.5em; color: var(--primary); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .step {
+            background: var(--card-bg);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .step h2 { color: var(--primary); margin-top: 0; }
+        code {
+            background: #000;
+            color: #00ff88;
+            padding: 10px;
+            display: block;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        .warning {
+            border-left-color: var(--accent);
+            background: #1a0a0a;
+        }
+        .warning h2 { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ThinkPad T490s Installation Protocol</h1>
+            <p>Bypassing Error 0x8007000D and the Invisible SSD Paradox</p>
+        </header>
+
+        <div class="step">
+            <h2>Phase 1: USB Architecture</h2>
+            <p>Standard USB tools fail with modern Windows ISOs. We use a dual-partition layout.</p>
+            <ul>
+                <li><strong>Partition 1 (FAT32):</strong> 1GB for UEFI/Boot files.</li>
+                <li><strong>Partition 2 (NTFS):</strong> Remainder for the large installation image.</li>
+            </ul>
+        </div>
+
+        <div class="step warning">
+            <h2>Phase 2: The Invisible SSD</h2>
+            <p>If the drive list is empty, don't panic. The T490s needs Intel RST v18.7 drivers.</p>
+            <p>1. Use <strong>SetupRST.exe -extractdrivers</strong> to get the raw .inf files.</p>
+            <p>2. Put them in a /DRIVERS folder on your USB.</p>
+        </div>
+
+        <div class="step">
+            <h2>Phase 3: God-Mode Manual Deploy</h2>
+            <p>When the GUI fails, use DISM directly from the Shift+F10 console.</p>
+            <code>
+                diskpart<br>
+                select disk 0<br>
+                clean<br>
+                convert gpt<br>
+                ...<br>
+                dism /apply-image /imagefile:D:\sources\install.wim /index:1 /applydir:W:\
+            </code>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Antigravity AI Stack v6.5 | Secure. Efficient. Autonomous.</p>
+        </footer>
+    </div>
+</body>
+</html>

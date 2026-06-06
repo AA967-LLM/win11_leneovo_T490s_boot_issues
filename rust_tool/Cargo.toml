@@ -1,0 +1,9 @@
+[package]
+name = "t490s-scout"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sysinfo = "0.29"
+colored = "2.0"
+walkdir = "2.3"

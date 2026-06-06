@@ -1,0 +1,54 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{primary}{HTML}{00F3FF}
+\definecolor{bg}{HTML}{0A0A0A}
+
+\title{\textbf{ThinkPad T490s Deployment Protocol}}
+\author{Antigravity AI Stack v6.5}
+\date{June 6, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document outlines the professional procedure for deploying Windows 11 on the Lenovo ThinkPad T490s, specifically targeting hardware compatibility issues encountered with the Samsung NVMe controller and the Intel 10th Gen platform.
+
+\section{Phase 1: Storage Architecture}
+The standard FAT32 limitation of 4GB prevents modern \texttt{install.wim} files from being transferred to bootable media. We implement a dual-partition scheme:
+\begin{itemize}
+    \item \textbf{EFI Partition:} 1024MB, FAT32.
+    \item \textbf{Data Partition:} Remaining capacity, NTFS.
+\end{itemize}
+
+\section{Phase 2: Driver Handshake}
+The T490s requires the \textbf{Intel Rapid Storage Technology (v18.7)} drivers. These must be extracted from the official \texttt{SetupRST.exe} using the command line:
+\begin{center}
+    \texttt{SetupRST.exe -extractdrivers C:\textbackslash Drivers}
+\end{center}
+
+\section{Phase 3: Manual Installation (God-Mode)}
+When the Setup GUI fails to acknowledge the target drive, we bypass the wizard using the \textbf{Deployment Image Servicing and Management (DISM)} engine.
+
+\begin{lstlisting}[language=bash, caption=Diskpart Configuration]
+diskpart
+select disk 0
+clean
+convert gpt
+create partition efi size=100
+format quick fs=fat32 label="System"
+assign letter=S
+create partition primary
+format quick fs=ntfs label="Windows"
+assign letter=W
+\end{lstlisting}
+
+\section{Conclusion}
+By utilizing a bare-metal approach, we eliminate the dependencies on the buggy Windows installer wizard and ensure a stable, manufacturer-verified hardware environment.
+
+\end{document}
