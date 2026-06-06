@@ -1,10 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
 set VERSION=3.0-PREMIUM
-set LOGFILE=%~dp0GOD_MODE_V3_LOG.txt
+set LOGFILE=%~dp0APEX_DEPLOY_LOG.txt
 
 echo ================================================= > %LOGFILE%
-echo ANTIGRAVITY GOD-MODE v%VERSION% >> %LOGFILE%
+echo ANTIGRAVITY APEX-DEPLOYMENT v%VERSION% >> %LOGFILE%
 echo SYSTEM DIAGNOSTIC START: %DATE% %TIME% >> %LOGFILE%
 echo ================================================= >> %LOGFILE%
 
@@ -53,9 +53,9 @@ echo create partition primary
 echo format quick fs=ntfs label="Windows"
 echo assign letter=W
 echo exit
-) > %temp%\dp_v3.txt
+) > %temp%\dp_apex.txt
 
-diskpart /s %temp%\dp_v3.txt >> %LOGFILE% 2>&1
+diskpart /s %temp%\dp_apex.txt >> %LOGFILE% 2>&1
 
 :: 3. DEPLOYMENT (DISM ENGINE)
 echo [*] APPLYING WINDOWS 11 (THIS TAKES 5-10 MINS)...

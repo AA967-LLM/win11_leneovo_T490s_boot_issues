@@ -1,4 +1,4 @@
-# ThinkPad T490s Windows 11 Installation Guide (The God-Mode Protocol)
+# ThinkPad T490s Windows 11 Installation Guide (Apex-Deployment Protocol)
 
 This repository contains the definitive, bare-metal deployment protocol for installing Windows 11 on the Lenovo ThinkPad T490s (10th Gen Intel). It bypasses common issues such as:
 - **Error 0x8007000D**: Caused by the 4GB FAT32 file size limit on large ISOs.
@@ -12,8 +12,8 @@ To defeat the 4GB barrier, the USB must be partitioned as follows:
 - **UEFI_BOOT (1GB, FAT32)**: Contains the UEFI entry points.
 - **WIN11_DATA (Remaining, NTFS)**: Contains the full, uncorrupted `install.wim` (7.5GB+).
 
-### 2. The "God-Mode" Script (Manual Deployment)
-When the Windows Setup GUI fails to show your drive, use the included `AUTO_INSTALL_V3.bat`. It bypasses the Wizard and uses the **DISM Engine** to:
+### 2. The Apex-Deployment Script (Manual Deployment)
+When the Windows Setup GUI fails to show your drive, use the included `APEX_DEPLOY_V3.bat`. It bypasses the Wizard and uses the **DISM Engine** to:
 1.  Search all drives for the Windows Image.
 2.  Partition the internal SSD (Disk 0) as GPT.
 3.  Apply the image directly to the drive.
