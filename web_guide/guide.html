@@ -3,95 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex-Deployment Protocol: ThinkPad T490s</title>
-    <style>
-        :root {
-            --primary: #00f3ff;
-            --bg: #0a0a0a;
-            --card-bg: #141414;
-            --text: #e0e0e0;
-            --accent: #ff007b;
-        }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'JetBrains Mono', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        header {
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-        h1 { font-size: 2.5em; color: var(--primary); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .step {
-            background: var(--card-bg);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        .step h2 { color: var(--primary); margin-top: 0; }
-        code {
-            background: #000;
-            color: #00ff88;
-            padding: 10px;
-            display: block;
-            border-radius: 4px;
-            margin: 15px 0;
-            overflow-x: auto;
-        }
-        .warning {
-            border-left-color: var(--accent);
-            background: #1a0a0a;
-        }
-        .warning h2 { color: var(--accent); }
-    </style>
+    <title>APEX-DEPLOYMENT COMMAND CENTER</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@100;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="grid-overlay"></div>
     <div class="container">
-        <header>
-            <h1>ThinkPad T490s Installation Protocol</h1>
-            <p>Bypassing Error 0x8007000D and the Invisible SSD Paradox</p>
+        <header class="apex-header">
+            <div class="apex-title">APEX<span>DEPLOY</span></div>
+            <div class="badge">V3.0 STABLE</div>
         </header>
 
-        <div class="step">
-            <h2>Phase 1: USB Architecture</h2>
-            <p>Standard USB tools fail with modern Windows ISOs. We use a dual-partition layout.</p>
-            <ul>
-                <li><strong>Partition 1 (FAT32):</strong> 1GB for UEFI/Boot files.</li>
-                <li><strong>Partition 2 (NTFS):</strong> Remainder for the large installation image.</li>
-            </ul>
-        </div>
+        <section class="protocol-card">
+            <div class="badge">Architecture</div>
+            <h2>Storage Orchestration</h2>
+            <p>To eliminate the FAT32/NTFS friction, we employ a non-standard <strong>Dual-Sector Bootstrap</strong>. This ensures high-capacity images (7.5GB+) remain uncorrupted while maintaining UEFI compliance.</p>
+            <div class="code-block">
+                Partition 1: BOOT [FAT32] 1024MB <br>
+                Partition 2: DATA [NTFS ] REMAINING
+            </div>
+        </section>
 
-        <div class="step warning">
-            <h2>Phase 2: The Invisible SSD</h2>
-            <p>If the drive list is empty, don't panic. The T490s needs Intel RST v18.7 drivers.</p>
-            <p>1. Use <strong>SetupRST.exe -extractdrivers</strong> to get the raw .inf files.</p>
-            <p>2. Put them in a /DRIVERS folder on your USB.</p>
-        </div>
+        <section class="protocol-card" style="border-left-color: var(--apex-magenta);">
+            <div class="badge" style="border-color: var(--apex-magenta); color: var(--apex-magenta);">Critical Sync</div>
+            <h2>Intel RST Handshake</h2>
+            <p>The ThinkPad T490s Samsung NVMe controller requires manufacturer-verified drivers to expose the disk topology to the installer GUI.</p>
+            <div class="code-block" style="color: var(--apex-magenta);">
+                [!] Target: Intel RST v18.7.6.1010 <br>
+                [!] Status: Official Lenovo-Signed <br>
+                [!] Logic: VMD/Non-VMD Hybrid
+            </div>
+        </section>
 
-        <div class="step">
-            <h2>Phase 3: Apex-Deployment Manual Deploy</h2>
-            <p>When the GUI fails, use DISM directly from the Shift+F10 console.</p>
-            <code>
-                diskpart<br>
-                select disk 0<br>
-                clean<br>
-                convert gpt<br>
-                ...<br>
+        <section class="protocol-card">
+            <div class="badge">Execution</div>
+            <h2>Bare-Metal Manual Force</h2>
+            <p>Bypass the Windows Setup Wizard entirely using the Apex-Deployment DISM engine.</p>
+            <div class="code-block">
                 dism /apply-image /imagefile:D:\sources\install.wim /index:1 /applydir:W:\
-            </code>
-        </div>
+            </div>
+        </section>
 
-        <footer>
-            <p>&copy; 2026 Antigravity AI Stack v6.5 | Secure. Efficient. Autonomous.</p>
+        <footer class="footer">
+            <p>CONFIDENTIAL | ANTIGRAVITY AI CORE | 2026</p>
         </footer>
     </div>
 </body>

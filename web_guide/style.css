@@ -1,0 +1,110 @@
+/* 
+   APEX-DEPLOYMENT COMMAND CENTER
+   Architected by Antigravity OS AI Cluster
+   Powered by Rust, HTML5, CSS3, and LaTeX
+*/
+
+:root {
+    --apex-cyan: #00f3ff;
+    --apex-magenta: #ff007b;
+    --apex-bg: #050505;
+    --apex-card: rgba(20, 20, 20, 0.95);
+    --apex-glow: 0 0 15px var(--apex-cyan);
+}
+
+body {
+    background-color: var(--apex-bg);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    animation: grid-drift 30s linear infinite;
+}
+
+@keyframes grid-drift {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.apex-header {
+    border-bottom: 2px solid var(--apex-cyan);
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.apex-title {
+    font-size: 2.8em;
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.apex-title span { color: var(--apex-cyan); text-shadow: var(--apex-glow); }
+
+.protocol-card {
+    background: var(--apex-card);
+    border: 1px solid #222;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.protocol-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--apex-cyan);
+    box-shadow: var(--apex-glow);
+}
+
+.code-block {
+    background: #000;
+    padding: 20px;
+    color: #00ff88;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid #111;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border: 1px solid var(--apex-cyan);
+    color: var(--apex-cyan);
+    font-size: 0.7em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 0.8em;
+    color: #444;
+}
